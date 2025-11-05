@@ -46,28 +46,6 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
     }
   }, [pageNum]);
 
-  useEffect(() => {
-    // Re-render on window resize to fix initial sizing issues
-    const handleResize = () => {
-      if (pdfDocRef.current) {
-        renderPage(pageNum);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    // Also trigger a re-render after a short delay to fix initial load
-    const timer = setTimeout(() => {
-      if (pdfDocRef.current) {
-        renderPage(pageNum);
-      }
-    }, 100);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(timer);
-    };
-  }, []);
-
   const loadPDF = async () => {
     try {
       const loadingTask = window.pdfjsLib.getDocument(file);
@@ -75,7 +53,10 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
       pdfDocRef.current = pdf;
       setNumPages(pdf.numPages);
       setLoading(false);
-      renderPage(1);
+      // Wait for React to finish rendering the canvas before rendering the PDF
+      setTimeout(() => {
+        renderPage(1);
+      }, 50);
     } catch (err) {
       console.error('Error loading PDF:', err);
       setError(true);
