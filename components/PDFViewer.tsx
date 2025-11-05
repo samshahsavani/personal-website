@@ -98,10 +98,7 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
     return (
       <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden bg-white dark:bg-black">
         <div className="flex items-center justify-center h-[700px]">
-          <div className="text-center space-y-4">
-            <div className="w-12 h-12 border-4 border-gray-300 dark:border-gray-700 border-t-black dark:border-t-white rounded-full animate-spin mx-auto"></div>
-            <p className="text-gray-600 dark:text-gray-400">Loading presentation...</p>
-          </div>
+          <div className="text-sm text-gray-400 dark:text-gray-600">Loading...</div>
         </div>
       </div>
     );
