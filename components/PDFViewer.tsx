@@ -46,6 +46,18 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
     }
   }, [pageNum]);
 
+  useEffect(() => {
+    // Re-render on window resize for responsive scaling
+    const handleResize = () => {
+      if (pdfDocRef.current && !loading) {
+        renderPage(pageNum);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [pageNum, loading]);
+
   const loadPDF = async () => {
     try {
       const loadingTask = window.pdfjsLib.getDocument(file);
@@ -71,8 +83,13 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    // Use fixed scale for consistent sizing across all pages
-    const scale = 1.8;
+    // Calculate scale based on container width for better responsiveness
+    const containerWidth = canvas.parentElement?.clientWidth || window.innerWidth;
+    const pageViewport = page.getViewport({ scale: 1 });
+    // Use padding-aware calculation: subtract padding from container width
+    const availableWidth = containerWidth - (window.innerWidth < 640 ? 16 : 32); // Account for p-2 (8px*2) on mobile, p-4 (16px*2) on desktop
+    const scale = Math.min(availableWidth / pageViewport.width, 2.5); // Cap at 2.5x for quality
+
     const viewport = page.getViewport({ scale });
 
     canvas.height = viewport.height;
@@ -97,7 +114,7 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
   if (loading) {
     return (
       <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden bg-white dark:bg-black">
-        <div className="flex items-center justify-center h-[700px]">
+        <div className="flex items-center justify-center h-[300px]">
           <div className="text-sm text-gray-400 dark:text-gray-600">Loading...</div>
         </div>
       </div>
@@ -163,10 +180,8 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
       </div>
 
       {/* PDF Canvas - Premium feel */}
-      <div className="bg-gray-100 dark:bg-gray-900 p-8 flex justify-center items-center min-h-[700px]">
-        <div className="bg-white dark:bg-gray-950 shadow-2xl rounded-lg overflow-hidden max-w-full">
-          <canvas ref={canvasRef} className="max-w-full h-auto" />
-        </div>
+      <div className="bg-gray-100 dark:bg-gray-900 p-2 sm:p-4 flex justify-center items-start">
+        <canvas ref={canvasRef} className="max-w-full h-auto" />
       </div>
 
       {/* Navigation Controls - Minimal */}
