@@ -169,32 +169,30 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
         </div>
       </div>
 
-      {/* Navigation Controls - Clean & Premium */}
-      <div className="border-t border-gray-200 dark:border-gray-800 p-6 bg-gray-50 dark:bg-gray-900">
-        <div className="flex items-center justify-between max-w-2xl mx-auto">
+      {/* Navigation Controls - Minimal */}
+      <div className="border-t border-gray-200 dark:border-gray-800 py-4 bg-white dark:bg-black">
+        <div className="flex items-center justify-center gap-8">
           <button
             onClick={goToPrevious}
             disabled={pageNum <= 1}
-            className="px-6 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all disabled:opacity-40 disabled:cursor-not-allowed font-medium shadow-sm border border-gray-200 dark:border-gray-700 inline-flex items-center gap-2"
+            className="p-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Previous page"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Previous
           </button>
 
-          <div className="flex items-center gap-2 text-gray-900 dark:text-gray-100 font-medium">
-            <span>Page</span>
-            <span className="text-xl font-bold">{pageNum}</span>
-            <span>of {numPages}</span>
+          <div className="text-sm text-gray-600 dark:text-gray-400 min-w-[100px] text-center">
+            Page {pageNum} of {numPages}
           </div>
 
           <button
             onClick={goToNext}
             disabled={pageNum >= numPages}
-            className="px-6 py-3 bg-black dark:bg-white text-white dark:text-black rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-all disabled:opacity-40 disabled:cursor-not-allowed font-medium shadow-sm inline-flex items-center gap-2"
+            className="p-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Next page"
           >
-            Next
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
