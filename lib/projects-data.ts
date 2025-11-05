@@ -53,7 +53,7 @@ export const projectsData: Project[] = [
     description: "Enterprise data management for $2B+ healthcare infrastructure projects",
     tags: ["dRofus", "Revit", "BIM", "Data Integrity", "Enterprise"],
     logo: "/logos/b_h_architects_logo.jpeg",
-    presentation: "/Demystifying Data.pdf",
+    presentation: "/PRS_20251004_DataWorkflows_v1.pdf",
     fullContent: {
       overview: "At B+H, I manage data systems for projects like the $2B Halifax Infirmary Expansion. My job is making sure Revit models, dRofus databases, and project documentation stay synchronized across dozens of teams and consultants. One data mismatch can derail a multimillion dollar submission.",
       challenge: "Large-scale construction projects generate massive amounts of data across multiple platforms (Revit, dRofus, Navisworks). Keeping this data synchronized, accurate, and compliant is critical. Room Data Reports (RDR) are contractual deliverables and the source of truth for facility maintenance. Any data drift, duplicate geometry, or unlinked families can derail submissions and impact downstream stakeholders.",
@@ -68,7 +68,7 @@ export const projectsData: Project[] = [
     description: "ComfyUI and Stable Diffusion integration for rapid architectural visualization",
     tags: ["ComfyUI", "Automatic1111", "Stable Diffusion", "ControlNet", "Architecture"],
     logo: "/logos/b_h_architects_logo.jpeg",
-    presentation: "/AI Design Workflows.pdf",
+    presentation: "/PRS_20251004_AIWorkflows_v1.pdf.pdf",
     fullContent: {
       overview: "I integrated AI image generation (Stable Diffusion, ComfyUI) into B+H's design process to speed up early-stage visualization. Instead of spending days on renderings, designers can test facade options, lighting conditions, and material treatments in minutes.",
       challenge: "Architectural visualization is time-consuming and expensive. Traditional rendering workflows slow down design iteration, and communicating complex design intent to clients requires photorealistic renderings that take days to produce. The challenge: rapidly visualize large-scale projects (entertainment venues, 50-storey hotels) from simple sketches while maintaining design control and exploring multiple facade treatments, lighting conditions, and material options.",
