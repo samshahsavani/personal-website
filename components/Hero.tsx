@@ -16,7 +16,7 @@ export default function Hero() {
           I build products that solve real problems in the built environment.
         </p>
         <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-12 max-w-2xl text-balance leading-relaxed">
-          Currently developing AI tools to automate zoning research and managing enterprise BIM data for billion-dollar infrastructure projects. I care about making the architecture and development industry faster and less frustrating.
+          Currently developing AI tools to automate zoning research and managing enterprise BIM data for multibillion dollar infrastructure projects. I care about making the architecture and development industry faster and less frustrating.
         </p>
         <div className="flex flex-wrap gap-4">
           <button

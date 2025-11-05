@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { projectsData } from '@/lib/projects-data';
+import PDFViewer from '@/components/PDFViewer';
 
 export async function generateStaticParams() {
   return projectsData.map((project) => ({
@@ -10,8 +11,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const project = projectsData.find((p) => p.id === slug);
+  const resolvedParams = await params;
+  const project = projectsData.find((p) => p.id === resolvedParams.slug);
 
   if (!project) {
     return {
@@ -26,8 +27,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const project = projectsData.find((p) => p.id === slug);
+  const resolvedParams = await params;
+  const project = projectsData.find((p) => p.id === resolvedParams.slug);
 
   if (!project) {
     notFound();
@@ -79,8 +80,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </div>
 
           {/* Links */}
-          <div className="flex flex-wrap gap-4">
-            {project.link && (
+          {project.link && (
+            <div className="flex flex-wrap gap-4">
               <a
                 href={project.link}
                 target="_blank"
@@ -92,37 +93,15 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
-            )}
-            {project.presentation && (
-              <a
-                href={project.presentation}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-300 dark:border-gray-700 rounded-lg hover:border-gray-400 dark:hover:border-gray-600 transition-colors font-medium"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                Download Presentation
-              </a>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Presentation Viewer */}
         {project.presentation && (
           <div className="mb-16">
-            <h2 className="text-2xl font-semibold mb-6">Presentation</h2>
-            <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900">
-              <iframe
-                src={project.presentation}
-                className="w-full h-[600px] md:h-[700px]"
-                title={`${project.name} Presentation`}
-              />
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 text-center">
-              Having trouble viewing? <a href={project.presentation} target="_blank" rel="noopener noreferrer" className="underline hover:text-black dark:hover:text-white">Download the PDF</a>
-            </p>
+            <h2 className="text-2xl font-semibold mb-6 tracking-tight">Presentation</h2>
+            <PDFViewer file={project.presentation} title={`${project.name} Presentation`} />
           </div>
         )}
 
