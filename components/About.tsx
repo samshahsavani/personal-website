@@ -18,13 +18,13 @@ export default function About() {
         </div>
         <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
           <p>
-            I'm an architect who ended up building software because I got tired of watching smart people waste days on tasks that should take minutes.
+            I'm an architect who transitioned into building software after seeing a major opportunity: to help smart, creative teams stop wasting days on manual tasks and get back to the work that matters.
           </p>
           <p>
-            Right now I coordinate BIM and data systems for the $2B Halifax Infirmary Expansion Project at B+H, managing Revit-dRofus synchronization and project data across international teams. At the same time, I'm co-building ZoningPal with my co-founder Alireza—an AI platform that automates zoning research for architects and developers.
+            Right now I coordinate BIM and data systems for the $2B Halifax Infirmary Expansion Project at B+H, managing Revit-dRofus synchronization and project data across international teams. At the same time, I'm co-building ZoningPal with my co-founder Alireza, an AI platform that automates zoning research for architects and developers.
           </p>
           <p>
-            My background is computational design and data systems. I've taught at U of T, worked on AI-powered design workflows, and spent years coordinating BIM datasets and parsing zoning bylaws. The shift from architecture to product development wasn't sudden. It was just the logical next step after realizing the industry's biggest problems aren't design problems. They're data problems.
+            My background in architecture and computation led me to a core belief: by solving the industry's complex data problems, we can unlock our full design potential and make the entire process faster and less frustrating for everyone.
           </p>
         </div>
 
@@ -32,7 +32,7 @@ export default function About() {
           <h3 className="text-2xl font-semibold mb-6">Technical Background</h3>
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p>
-              I work across the stack—React and TypeScript for frontend, Node.js for backend, Claude API for AI analysis. I use Revit and dRofus daily for BIM coordination. I've built computational workflows in Grasshopper and Dynamo, integrated AI tools like Stable Diffusion into design processes, and taught computational design at U of T.
+              I work across the stack, including React and TypeScript for frontend, Node.js for backend, and Claude API for AI analysis. I use Revit and dRofus daily for BIM coordination. I've built computational workflows in Grasshopper and Dynamo, integrated AI tools like Stable Diffusion into design processes, and taught computational design at U of T.
             </p>
             <p>
               I'm comfortable whether that's writing scripts to automate data exports, integrating AI APIs to parse regulatory documents, or troubleshooting why a Revit family won't sync to dRofus. If it involves data, automation, or making architects' lives easier, I'm interested.

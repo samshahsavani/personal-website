@@ -13,7 +13,7 @@ export default function Hero() {
           Sam Shahsavani
         </h1>
         <p className="text-2xl md:text-3xl mb-6 tracking-tight animate-glow" style={{ color: 'var(--accent)' }}>
-          I build products that solve real problems in the built environment.
+          I solve data problems in the built environment.
         </p>
         <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-12 max-w-2xl text-balance leading-relaxed">
           Currently co-building ZoningPal, an AI platform that automates zoning research, and coordinating enterprise BIM data for a $2B healthcare project. I care about making the architecture and development industry faster and less frustrating.
