@@ -18,7 +18,7 @@ export default function About() {
         </div>
         <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
           <p>
-            I'm an architect who transitioned into building software after seeing a major opportunity: to help smart, creative teams stop wasting days on manual tasks and get back to the work that matters.
+            I'm an architectural designer who transitioned into building software after seeing a major opportunity: to help smart, creative teams stop wasting days on manual tasks and get back to the work that matters.
           </p>
           <p>
             Right now I coordinate BIM and data systems for the $2B Halifax Infirmary Expansion Project at B+H, managing Revit-dRofus synchronization and project data across international teams. At the same time, I'm co-building ZoningPal with my co-founder Alireza, an AI platform that automates zoning research for architects and developers.
