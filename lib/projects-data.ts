@@ -68,7 +68,7 @@ export const projectsData: Project[] = [
     description: "ComfyUI and Stable Diffusion integration for rapid architectural visualization",
     tags: ["ComfyUI", "Automatic1111", "Stable Diffusion", "ControlNet", "Architecture"],
     logo: "/logos/b_h_architects_logo.jpeg",
-    presentation: "/PRS_20251004_AIWorkflows_v1.pdf.pdf",
+    presentation: "/PRS_20251004_AIWorkflows_v1.pdf",
     fullContent: {
       overview: "I integrated AI image generation (Stable Diffusion, ComfyUI) into B+H's design process to speed up early-stage visualization. Instead of spending days on renderings, designers can test facade options, lighting conditions, and material treatments in minutes.",
       challenge: "Architectural visualization is time-consuming and expensive. Traditional rendering workflows slow down design iteration, and communicating complex design intent to clients requires photorealistic renderings that take days to produce. The challenge: rapidly visualize large-scale projects (entertainment venues, 50-storey hotels) from simple sketches while maintaining design control and exploring multiple facade treatments, lighting conditions, and material options.",
