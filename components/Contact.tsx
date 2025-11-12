@@ -6,11 +6,6 @@ export default function Contact() {
       href: 'mailto:sam.shahsavani@gmail.com',
     },
     {
-      name: 'GitHub',
-      value: 'github.com/samshahsavani',
-      href: 'https://github.com/samshahsavani',
-    },
-    {
       name: 'LinkedIn',
       value: 'linkedin.com/in/sam-shahsavani',
       href: 'https://www.linkedin.com/in/sam-shahsavani/',
