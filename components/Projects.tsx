@@ -23,6 +23,7 @@ export default function Projects() {
                       src={project.logo}
                       alt={`${project.name} logo`}
                       fill
+                      sizes="48px"
                       className="object-contain rounded"
                     />
                   </div>

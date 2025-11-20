@@ -18,44 +18,82 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
   const [pageNum, setPageNum] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const pdfDocRef = useRef<any>(null);
+  const renderTaskRef = useRef<any>(null);
+  const pageRenderingRef = useRef(false);
+  const pageNumPendingRef = useRef<number | null>(null);
 
+  const [isRendered, setIsRendered] = useState(false);
+
+  // Load PDF.js
   useEffect(() => {
-    // Load PDF.js from CDN
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-    script.async = true;
-    script.onload = () => {
+    const loadScript = async () => {
       if (window.pdfjsLib) {
-        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-          'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
         loadPDF();
+        return;
       }
-    };
-    document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
+      const scriptId = 'pdf-js-script';
+      if (document.getElementById(scriptId)) {
+        // Script is already loading, wait for it
+        const checkLib = setInterval(() => {
+          if (window.pdfjsLib) {
+            clearInterval(checkLib);
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+              'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+            loadPDF();
+          }
+        }, 100);
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+      script.async = true;
+      script.onload = () => {
+        if (window.pdfjsLib) {
+          window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+          loadPDF();
+        }
+      };
+      script.onerror = () => {
+        console.error('Failed to load PDF.js');
+        setError(true);
+        setLoading(false);
+      };
+      document.body.appendChild(script);
     };
+
+    loadScript();
   }, []);
 
+  // Handle page changes
   useEffect(() => {
     if (pdfDocRef.current) {
-      renderPage(pageNum);
+      queueRenderPage(pageNum);
     }
   }, [pageNum]);
 
+  // Handle resize with ResizeObserver
   useEffect(() => {
-    // Re-render on window resize for responsive scaling
-    const handleResize = () => {
-      if (pdfDocRef.current && !loading) {
-        renderPage(pageNum);
-      }
-    };
+    if (!containerRef.current) return;
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const resizeObserver = new ResizeObserver(() => {
+      if (pdfDocRef.current && !loading) {
+        queueRenderPage(pageNum);
+      }
+    });
+
+    resizeObserver.observe(containerRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
   }, [pageNum, loading]);
 
   const loadPDF = async () => {
@@ -65,10 +103,7 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
       pdfDocRef.current = pdf;
       setNumPages(pdf.numPages);
       setLoading(false);
-      // Wait for React to finish rendering the canvas before rendering the PDF
-      setTimeout(() => {
-        renderPage(1);
-      }, 50);
+      queueRenderPage(1);
     } catch (err) {
       console.error('Error loading PDF:', err);
       setError(true);
@@ -76,31 +111,81 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
     }
   };
 
+  const queueRenderPage = (num: number) => {
+    if (pageRenderingRef.current) {
+      pageNumPendingRef.current = num;
+    } else {
+      renderPage(num);
+    }
+  };
+
   const renderPage = async (num: number) => {
-    if (!pdfDocRef.current || !canvasRef.current) return;
+    if (!pdfDocRef.current || !canvasRef.current || !containerRef.current) return;
 
-    const page = await pdfDocRef.current.getPage(num);
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
+    pageRenderingRef.current = true;
 
-    // Calculate scale based on container width for better responsiveness
-    const containerWidth = canvas.parentElement?.clientWidth || window.innerWidth;
-    const pageViewport = page.getViewport({ scale: 1 });
-    // Use padding-aware calculation: subtract padding from container width
-    const availableWidth = containerWidth - (window.innerWidth < 640 ? 16 : 32); // Account for p-2 (8px*2) on mobile, p-4 (16px*2) on desktop
-    const scale = Math.min(availableWidth / pageViewport.width, 2.5); // Cap at 2.5x for quality
+    // Cancel any pending render task
+    if (renderTaskRef.current) {
+      try {
+        await renderTaskRef.current.cancel();
+      } catch (error) {
+        // Ignore cancel errors
+      }
+    }
 
-    const viewport = page.getViewport({ scale });
+    try {
+      const page = await pdfDocRef.current.getPage(num);
+      const canvas = canvasRef.current;
+      const context = canvas.getContext('2d');
 
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
+      if (!context) return;
 
-    const renderContext = {
-      canvasContext: context,
-      viewport: viewport,
-    };
+      // Calculate scale based on container width
+      const containerWidth = containerRef.current.clientWidth;
+      // Subtract padding (p-2 = 8px*2 = 16px on mobile, p-4 = 16px*2 = 32px on desktop)
+      const padding = window.innerWidth < 640 ? 16 : 32;
+      const availableWidth = containerWidth - padding;
 
-    await page.render(renderContext).promise;
+      const pageViewport = page.getViewport({ scale: 1 });
+      const scale = Math.min(availableWidth / pageViewport.width, 2.5);
+      const viewport = page.getViewport({ scale });
+
+      // Handle High DPI (Retina) displays
+      const outputScale = window.devicePixelRatio || 1;
+
+      canvas.width = Math.floor(viewport.width * outputScale);
+      canvas.height = Math.floor(viewport.height * outputScale);
+      canvas.style.width = Math.floor(viewport.width) + "px";
+      canvas.style.height = Math.floor(viewport.height) + "px";
+
+      const transform = outputScale !== 1
+        ? [outputScale, 0, 0, outputScale, 0, 0]
+        : null;
+
+      const renderContext = {
+        canvasContext: context,
+        viewport: viewport,
+        transform: transform,
+      };
+
+      renderTaskRef.current = page.render(renderContext);
+
+      await renderTaskRef.current.promise;
+      pageRenderingRef.current = false;
+      setIsRendered(true);
+
+      if (pageNumPendingRef.current !== null) {
+        renderPage(pageNumPendingRef.current);
+        pageNumPendingRef.current = null;
+      }
+    } catch (error: any) {
+      if (error.name === 'RenderingCancelledException') {
+        // Rendering cancelled, this is expected
+      } else {
+        console.error('Error rendering page:', error);
+      }
+      pageRenderingRef.current = false;
+    }
   };
 
   const goToPrevious = () => {
@@ -159,7 +244,7 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
   }
 
   return (
-    <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden bg-white dark:bg-black shadow-lg">
+    <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden bg-white dark:bg-black shadow-lg" ref={containerRef}>
       {/* Header */}
       <div className="border-b border-gray-200 dark:border-gray-800 p-4 flex justify-between items-center bg-gray-50 dark:bg-gray-900">
         <div className="flex items-center gap-4">
@@ -180,8 +265,16 @@ export default function PDFViewer({ file, title }: PDFViewerProps) {
       </div>
 
       {/* PDF Canvas - Premium feel */}
-      <div className="bg-gray-100 dark:bg-gray-900 p-2 sm:p-4 flex justify-center items-start">
-        <canvas ref={canvasRef} className="max-w-full h-auto" />
+      <div className="bg-gray-100 dark:bg-gray-900 p-2 sm:p-4 flex justify-center items-start relative min-h-[300px]">
+        {!isRendered && (
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <div className="text-sm text-gray-400 dark:text-gray-600">Loading...</div>
+          </div>
+        )}
+        <canvas
+          ref={canvasRef}
+          className={`max-w-full h-auto transition-opacity duration-500 ${isRendered ? 'opacity-100' : 'opacity-0'}`}
+        />
       </div>
 
       {/* Navigation Controls - Minimal */}

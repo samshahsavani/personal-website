@@ -36,6 +36,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <main className="min-h-screen pt-32 pb-20 px-6">
+      {/* Preload PDF resources */}
+      <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" as="script" />
+      <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js" as="script" />
+      {project.presentation && (
+        <link rel="preload" href={project.presentation} as="fetch" crossOrigin="anonymous" />
+      )}
       <div className="max-w-4xl mx-auto">
         {/* Back button */}
         <Link

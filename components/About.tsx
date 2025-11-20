@@ -10,6 +10,7 @@ export default function About() {
               src="/portrait.png"
               alt="Sam Shahsavani"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover scale-125"
               priority
             />
@@ -18,21 +19,21 @@ export default function About() {
         </div>
         <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
           <p>
-            I'm an architectural designer who transitioned into building software after seeing a major opportunity: to help smart, creative teams stop wasting days on manual tasks and get back to the work that matters.
+            I work at the intersection of architecture and software development. I coordinate BIM data on large healthcare projects and build technical tools on the side. This combination lets me understand both the workflows architects struggle with and how to build software that actually solves those problems.
           </p>
           <p>
-            Right now I coordinate BIM and data systems for the $2B Halifax Infirmary Expansion Project at B+H, managing Revit-dRofus synchronization and project data across international teams. At the same time, I'm co-building ZoningPal with my co-founder Alireza, an AI platform that automates zoning research for architects and developers.
+            At B+H Architects, I coordinate BIM data for the Halifax Infirmary Expansion Project, managing dRofus synchronization and Revit families across a multi disciplinary international team. On the side, I co-founded ZoningPal with Alireza. We built a platform that uses AI to parse municipal zoning bylaws and generate compliance briefs in minutes instead of days. The product is live with paying customers.
           </p>
           <p>
-            My background in architecture and computation led me to a core belief: by solving the industry's complex data problems, we can unlock our full design potential and make the entire process faster and less frustrating for everyone.
+            I believe the construction industry's biggest problems are data problems. When teams spend days manually checking room data sheets or parsing zoning codes, that's time stolen from actual design work. I build tools and workflows that give architects their time back.
           </p>
         </div>
 
         <div className="mt-16 pt-12 border-t border-gray-200 dark:border-gray-800">
           <h3 className="text-2xl font-semibold mb-6">Technical Background</h3>
-          <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+          <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
             <p>
-              I work across the stack, including React and TypeScript for frontend, Node.js for backend, and Claude API for AI analysis. I use Revit and dRofus daily for BIM coordination. I've built computational workflows in Grasshopper and Dynamo, integrated AI tools like Stable Diffusion into design processes, and taught computational design at U of T.
+              I work across the full stack. For ZoningPal, I built the React and TypeScript frontend, Node.js backend, and integrated Claude API for document parsing. I use PostGIS for spatial queries. At B+H, I use Revit and dRofus daily for BIM coordination, and I write Python and Dynamo scripts to automate repetitive workflows. I've also integrated AI image generation tools like Stable Diffusion and ComfyUI into design processes for rapid visualization.
             </p>
             <p>
               I'm comfortable whether that's writing scripts to automate data exports, integrating AI APIs to parse regulatory documents, or troubleshooting why a Revit family won't sync to dRofus. If it involves data, automation, or making architects' lives easier, I'm interested.

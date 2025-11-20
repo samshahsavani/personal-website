@@ -9,14 +9,14 @@ export default function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-4xl w-full animate-fade-in">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance tracking-tight">
+        <h1 className="text-6xl md:text-8xl font-bold mb-8 text-balance tracking-tight leading-none">
           Sam Shahsavani
         </h1>
-        <p className="text-2xl md:text-3xl mb-6 tracking-tight animate-glow" style={{ color: 'var(--accent)' }}>
-          I solve data problems in the built environment.
+        <p className="text-3xl md:text-4xl mb-8 tracking-tight animate-glow font-light" style={{ color: 'var(--accent)' }}>
+          I build tools that solve data problems in architecture and construction.
         </p>
-        <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-12 max-w-2xl text-balance leading-relaxed">
-          Currently co-building ZoningPal, an AI platform that automates zoning research, and coordinating enterprise BIM data for a $2B healthcare project. I care about making the architecture and development industry faster and less frustrating.
+        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-12 max-w-3xl text-balance leading-relaxed font-light">
+          I'm a BIM Coordinator at B+H Architects on the Halifax Infirmary Expansion Project, where I manage dRofus coordination and Revit workflows for a $2B healthcare build. I also co-founded <span className="font-medium text-black dark:text-white">ZoningPal</span>, an AI powered platform that automates municipal zoning analysis. I write code, build automation workflows, and solve data problems that slow down design and construction teams.
         </p>
         <div className="flex flex-wrap gap-4">
           <button
