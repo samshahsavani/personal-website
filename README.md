@@ -66,6 +66,16 @@ npm start
 ### Update Projects
 Update the relevant `../00-Personal/source/` module first, then sync `lib/projects-data.ts`.
 
+### Update Assets
+Source assets live in `../00-Personal/source/`. Website files in `public/` are deployable copies, not the source of truth.
+
+When adding or replacing website imagery:
+
+1. Put the canonical asset in the relevant `../00-Personal/source/.../assets/` folder.
+2. Copy only the selected website-ready asset into `public/`.
+3. Run `npm run optimize:images`.
+4. Treat `public/optimized/` as generated output.
+
 ### Update Contact Links
 Edit `lib/site-content.ts` to update contact information.
 
