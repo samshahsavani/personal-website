@@ -74,13 +74,18 @@ For positioning or tone changes, update `../00-Personal/source/narrative.md` fir
 
 ## Deployment
 
-Deploy easily to Vercel:
+This site is configured as a static Next.js export. `npm run build` generates the deployable site in `out/`.
 
 ```bash
-npx vercel
+npm run build
 ```
 
-Or use any other hosting platform that supports Next.js.
+For Render Static Site:
+
+- **Build command:** `npm run build`
+- **Publish directory:** `out`
+
+Do not deploy this portfolio as a long-running Node web service unless the site later adds server-only features such as API routes, authentication, cookies, or request-time database work.
 
 ## License
 
