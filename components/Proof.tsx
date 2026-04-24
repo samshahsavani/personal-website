@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
 import { proofContent } from '@/lib/site-content';
+import { imagePreviewSrc } from '@/lib/image-optimization';
 
 export default function Proof() {
   const featuredLogoIsWide = proofContent.featured.logo.includes('bloom-hub-logo');
@@ -28,7 +29,7 @@ export default function Proof() {
                     <div className="flex items-center gap-3 mb-4">
                       <div className={`relative h-9 flex-shrink-0 opacity-75 transition-opacity duration-500 group-hover:opacity-100 ${featuredLogoIsWide ? 'w-24' : 'w-9'}`}>
                         <Image
-                          src={proofContent.featured.logo}
+                          src={imagePreviewSrc(proofContent.featured.logo)}
                           alt={`${proofContent.featured.label} logo`}
                           fill
                           sizes={featuredLogoIsWide ? '96px' : '36px'}
@@ -90,7 +91,7 @@ export default function Proof() {
                       <div className="flex items-center gap-3 mb-4">
                         <div className={`relative h-8 flex-shrink-0 opacity-70 transition-opacity duration-500 group-hover:opacity-100 ${logoIsWide ? 'w-20' : 'w-8'}`}>
                           <Image
-                            src={item.logo}
+                            src={imagePreviewSrc(item.logo)}
                             alt={`${item.label} logo`}
                             fill
                             sizes={logoIsWide ? '80px' : '32px'}

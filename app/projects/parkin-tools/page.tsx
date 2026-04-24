@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ExpandableImage from '@/components/ExpandableImage';
 import Reveal from '@/components/Reveal';
+import { imagePreviewSrc } from '@/lib/image-optimization';
 
 type Screenshot = {
   src: string;
@@ -431,7 +432,7 @@ export default function ParkinToolsPage() {
           <div className="flex items-center gap-4 mb-8">
             <div className="relative h-12 w-12">
               <Image
-                src="/logos/Parkin.jpeg"
+                src={imagePreviewSrc('/logos/Parkin.jpeg')}
                 alt="Parkin Architects logo"
                 fill
                 priority

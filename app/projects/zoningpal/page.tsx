@@ -4,6 +4,7 @@ import Link from 'next/link';
 import ProjectImageCard from '@/components/ProjectImageCard';
 import PDFViewer from '@/components/PDFViewer';
 import Reveal from '@/components/Reveal';
+import { imagePreviewSrc } from '@/lib/image-optimization';
 
 const sampleReportHref = '/zoningpal/ZoningPal-Sample-Report.pdf';
 
@@ -275,7 +276,7 @@ export default function ZoningPalPage() {
           <div className="flex items-center gap-4 mb-8">
             <div className="relative h-12 w-12">
               <Image
-                src="/logos/ZoningPal.png"
+                src={imagePreviewSrc('/logos/ZoningPal.png')}
                 alt="ZoningPal logo"
                 fill
                 priority

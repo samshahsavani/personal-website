@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Reveal from '@/components/Reveal';
 import { aboutContent } from '@/lib/site-content';
+import { imagePreviewSrc } from '@/lib/image-optimization';
 
 export default function About() {
   return (
@@ -10,7 +11,7 @@ export default function About() {
           <div className="flex items-center gap-6 mb-16">
             <div className="w-20 h-20 relative flex-shrink-0 rounded-full overflow-hidden border border-black/[0.06] dark:border-white/[0.06]">
               <Image
-                src="/portrait.png"
+                src={imagePreviewSrc('/portrait.png')}
                 alt="Sam Shahsavani"
                 fill
                 sizes="80px"

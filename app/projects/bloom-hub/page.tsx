@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ProjectImageCard, { type ProjectImageFrame } from '@/components/ProjectImageCard';
 import Reveal from '@/components/Reveal';
+import { imagePreviewSrc } from '@/lib/image-optimization';
 
 type Screenshot = {
   src: string;
@@ -243,7 +244,7 @@ export default function BloomHubPage() {
           <div className="flex items-center gap-4 mb-8">
             <div className="relative h-12 w-28">
               <Image
-                src="/logos/bloom-hub-logo.png"
+                src={imagePreviewSrc('/logos/bloom-hub-logo.png')}
                 alt="Bloom Hub logo"
                 fill
                 priority

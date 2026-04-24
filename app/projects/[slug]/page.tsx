@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { projectsData } from '@/lib/projects-data';
+import { imagePreviewSrc } from '@/lib/image-optimization';
 import ExpandableImage from '@/components/ExpandableImage';
 import PDFViewer from '@/components/PDFViewer';
 import Reveal from '@/components/Reveal';
@@ -71,7 +72,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {project.logo && (
               <div className="w-12 h-12 relative flex-shrink-0">
                 <Image
-                  src={project.logo}
+                  src={imagePreviewSrc(project.logo)}
                   alt={`${project.name} logo`}
                   fill
                   className="object-contain"

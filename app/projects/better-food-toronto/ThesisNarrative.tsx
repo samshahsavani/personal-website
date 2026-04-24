@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Reveal from '@/components/Reveal';
+import { imagePreviewSrc } from '@/lib/image-optimization';
 
 /* ─── helpers ─── */
 const slidePath = (n: number) =>
@@ -13,9 +14,10 @@ const photoPath = (n: number) =>
   `/thesis/photos/presentation-${String(n).padStart(2, '0')}.jpg`;
 
 /* ─── Expandable Image Wrapper (Lightbox) ─── */
-function LightboxImage({ src, alt, width, height, className, quality, priority }: any) {
+function LightboxImage({ src, alt, width, height, className, quality, priority, sizes }: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
+  const previewSrc = imagePreviewSrc(src);
 
   useEffect(() => {
     if (isOpen) {
@@ -41,7 +43,16 @@ function LightboxImage({ src, alt, width, height, className, quality, priority }
         className={`group relative cursor-zoom-in ${className ?? ''}`} 
         onClick={() => setIsOpen(true)}
       >
-        <Image src={src} alt={alt} width={width} height={height} className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]" quality={quality} priority={priority} />
+        <Image
+          src={previewSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
+          quality={quality}
+          priority={priority}
+          sizes={sizes ?? '100vw'}
+        />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 pointer-events-none" />
       </div>
 
@@ -91,6 +102,7 @@ function SlideGrid({ slides, columns = 1 }: { slides: number[]; columns?: number
               width={1920}
               height={1080}
               quality={85}
+              sizes={columns === 1 ? '100vw' : columns === 2 ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 768px) 33vw, 100vw'}
             />
           </div>
         </Reveal>
@@ -189,6 +201,7 @@ function PhotoGallery() {
             width={1920}
             height={1280}
             quality={85}
+            sizes="100vw"
           />
         </div>
         <p className="text-center text-sm text-gray-500 dark:text-gray-400 italic mb-4">
@@ -208,10 +221,11 @@ function PhotoGallery() {
               }`}
             >
               <Image
-                src={photoPath(n)}
+                src={imagePreviewSrc(photoPath(n))}
                 alt={`Thumbnail ${n}`}
                 width={96}
                 height={64}
+                sizes="96px"
                 className="w-full h-full object-cover"
               />
             </button>
@@ -280,6 +294,7 @@ export default function ThesisNarrative() {
                 height={1080}
                 quality={90}
                 priority
+                sizes="(min-width: 768px) 384px, 80vw"
               />
             </div>
           </div>
@@ -485,6 +500,7 @@ export default function ThesisNarrative() {
                   height={1080}
                   className="min-w-[1000px] w-full h-auto"
                   quality={90}
+                  sizes="100vw"
                 />
               </div>
             </div>
@@ -802,6 +818,7 @@ export default function ThesisNarrative() {
                     height={3000}
                     className="min-w-[1200px] w-full h-auto"
                     quality={90}
+                    sizes="100vw"
                   />
                 </div>
               </div>
@@ -884,6 +901,7 @@ export default function ThesisNarrative() {
                   width={1920}
                   height={1080}
                   quality={85}
+                  sizes="100vw"
                 />
               </div>
             </div>
@@ -1054,10 +1072,11 @@ export default function ThesisNarrative() {
               {/* U of T Logo */}
               <div className="flex justify-center mb-6">
                 <Image
-                  src="/thesis/uoft-crest.png"
+                  src={imagePreviewSrc('/thesis/uoft-crest.png')}
                   alt="University of Toronto"
                   width={60}
                   height={60}
+                  sizes="60px"
                   className="h-12 w-auto opacity-60 dark:opacity-40 dark:invert"
                 />
               </div>

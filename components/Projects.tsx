@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { projectsData } from '@/lib/projects-data';
 import { featuredProjectIds } from '@/lib/site-content';
+import { imagePreviewSrc } from '@/lib/image-optimization';
 import Reveal from '@/components/Reveal';
 
 export default function Projects() {
@@ -28,7 +29,7 @@ export default function Projects() {
                     {project.logo && (
                       <div className={`flex-shrink-0 h-10 relative opacity-70 group-hover:opacity-100 transition-opacity duration-500 ${project.logo.includes('bloom-hub-logo') ? 'w-24' : 'w-10'}`}>
                         <Image
-                          src={project.logo}
+                          src={imagePreviewSrc(project.logo)}
                           alt={`${project.name} logo`}
                           fill
                           sizes={project.logo.includes('bloom-hub-logo') ? '96px' : '40px'}

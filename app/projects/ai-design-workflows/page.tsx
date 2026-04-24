@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ProjectImageCard, { type ProjectImageFrame } from '@/components/ProjectImageCard';
 import Reveal from '@/components/Reveal';
+import { imagePreviewSrc } from '@/lib/image-optimization';
 
 type ImageSpec = {
   src: string;
@@ -336,7 +337,7 @@ export default function AIDesignWorkflowsPage() {
           <div className="flex items-center gap-4 mb-8">
             <div className="relative h-12 w-12">
               <Image
-                src="/logos/b_h_architects_logo.jpeg"
+                src={imagePreviewSrc('/logos/b_h_architects_logo.jpeg')}
                 alt="B+H Architects logo"
                 fill
                 priority

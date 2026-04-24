@@ -4,9 +4,12 @@ import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import { imagePreviewSrc } from '@/lib/image-optimization';
 
 type ExpandableImageProps = {
   src: string;
+  fullSrc?: string;
+  previewSrc?: string;
   alt: string;
   fill?: boolean;
   width?: number;
@@ -21,6 +24,8 @@ type ExpandableImageProps = {
 
 export default function ExpandableImage({
   src,
+  fullSrc,
+  previewSrc,
   alt,
   fill = false,
   width = 1600,
@@ -34,6 +39,8 @@ export default function ExpandableImage({
 }: ExpandableImageProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
+  const displaySrc = previewSrc ?? imagePreviewSrc(src);
+  const zoomSrc = fullSrc ?? src;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -71,7 +78,7 @@ export default function ExpandableImage({
 
   const image = fill ? (
     <Image
-      src={src}
+      src={displaySrc}
       alt={alt}
       fill
       priority={priority}
@@ -82,7 +89,7 @@ export default function ExpandableImage({
     />
   ) : (
     <Image
-      src={src}
+      src={displaySrc}
       alt={alt}
       width={width}
       height={height}
@@ -119,7 +126,7 @@ export default function ExpandableImage({
             onClick={() => setIsOpen(false)}
           >
             <img
-              src={src}
+              src={zoomSrc}
               alt={alt}
               className={`bg-white shadow-2xl transition-all duration-300 ease-in-out ${
                 isZoomed

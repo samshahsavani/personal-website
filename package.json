@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "optimize:images": "node scripts/generate-image-previews.mjs",
     "start": "next start",
     "lint": "next lint"
   },
