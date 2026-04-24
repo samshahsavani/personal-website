@@ -1,44 +1,66 @@
 import Image from 'next/image';
+import Reveal from '@/components/Reveal';
+import { aboutContent } from '@/lib/site-content';
 
 export default function About() {
   return (
-    <section id="about" className="py-20 px-6 bg-gray-50 dark:bg-gray-900/50">
+    <section id="about" className="py-24 px-6 border-t border-black/[0.04] dark:border-white/[0.04]">
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-6 mb-12">
-          <div className="w-24 h-24 relative flex-shrink-0 rounded-full overflow-hidden border-2 border-gray-200 dark:border-gray-800">
-            <Image
-              src="/portrait.png"
-              alt="Sam Shahsavani"
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover scale-125"
-              priority
-            />
+        <Reveal>
+          <div className="flex items-center gap-6 mb-16">
+            <div className="w-20 h-20 relative flex-shrink-0 rounded-full overflow-hidden border border-black/[0.06] dark:border-white/[0.06]">
+              <Image
+                src="/portrait.png"
+                alt="Sam Shahsavani"
+                fill
+                sizes="80px"
+                className="object-cover scale-125"
+                priority
+              />
+            </div>
+            <div>
+              <h2 className="mb-1">{aboutContent.title}</h2>
+              <span className="label">{aboutContent.locationLabel}</span>
+            </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">About</h2>
-        </div>
-        <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          <p>
-            I work at the intersection of architecture and software development. I coordinate BIM data on large healthcare projects and build technical tools on the side. This combination lets me understand both the workflows architects struggle with and how to build software that actually solves those problems.
-          </p>
-          <p>
-            At B+H Architects, I coordinate BIM data for the Halifax Infirmary Expansion Project, managing dRofus synchronization and Revit families across a multi disciplinary international team. On the side, I co-founded ZoningPal with Alireza. We built a platform that uses AI to parse municipal zoning bylaws and generate compliance briefs in minutes instead of days. The product is live with paying customers.
-          </p>
-          <p>
-            I believe the construction industry's biggest problems are data problems. When teams spend days manually checking room data sheets or parsing zoning codes, that's time stolen from actual design work. I build tools and workflows that give architects their time back.
-          </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-16 pt-12 border-t border-gray-200 dark:border-gray-800">
-          <h3 className="text-2xl font-semibold mb-6">Technical Background</h3>
-          <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-            <p>
-              I work across the full stack. For ZoningPal, I built the React and TypeScript frontend, Node.js backend, and integrated Claude API for document parsing. I use PostGIS for spatial queries. At B+H, I use Revit and dRofus daily for BIM coordination, and I write Python and Dynamo scripts to automate repetitive workflows. I've also integrated AI image generation tools like Stable Diffusion and ComfyUI into design processes for rapid visualization.
-            </p>
-            <p>
-              I'm comfortable whether that's writing scripts to automate data exports, integrating AI APIs to parse regulatory documents, or troubleshooting why a Revit family won't sync to dRofus. If it involves data, automation, or making architects' lives easier, I'm interested.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+          {/* Main narrative — sourced via lib/site-content.ts from public source modules */}
+          <Reveal className="md:col-span-7">
+            <div className="space-y-6 text-[17px] text-gray-700 dark:text-gray-300 leading-[1.8]">
+              {aboutContent.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Structured metadata — sourced via lib/site-content.ts from public source modules */}
+          <Reveal delay={150} className="md:col-span-5">
+            <div className="space-y-8">
+              {aboutContent.sections.map((section) => (
+                <div key={section.label}>
+                  <span className="label block mb-3">{section.label}</span>
+                  {'items' in section ? (
+                    <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-gray-500 dark:text-gray-400">
+                      {section.items.map((skill) => (
+                        <span key={skill}>{skill}</span>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {section.body.split('\n').map((line, index) => (
+                        <span key={line}>
+                          {index > 0 && <br />}
+                          {line}
+                        </span>
+                      ))}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

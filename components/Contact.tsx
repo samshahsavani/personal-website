@@ -1,43 +1,39 @@
+import Reveal from '@/components/Reveal';
+import { contactContent } from '@/lib/site-content';
+
 export default function Contact() {
-  const contactLinks = [
-    {
-      name: 'Email',
-      value: 'sam.shahsavani@gmail.com',
-      href: 'mailto:sam.shahsavani@gmail.com',
-    },
-    {
-      name: 'LinkedIn',
-      value: 'linkedin.com/in/sam-shahsavani',
-      href: 'https://www.linkedin.com/in/sam-shahsavani/',
-    },
-  ];
-
   return (
-    <section id="contact" className="py-20 px-6">
+    <section id="contact" className="py-24 px-6 border-t border-black/[0.04] dark:border-white/[0.04]">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">Get in Touch</h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-12 leading-relaxed">
-          Open to opportunities and collaborations. Let's build something great together.
-        </p>
+        <Reveal>
+          <h2 className="mb-4">{contactContent.title}</h2>
+        </Reveal>
+        <Reveal delay={100}>
+          <p className="text-lg text-muted mb-12 leading-relaxed max-w-xl">
+            {contactContent.intro}
+          </p>
+        </Reveal>
 
-        <div className="space-y-6">
-          {contactLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              target={link.name !== 'Email' ? '_blank' : undefined}
-              rel={link.name !== 'Email' ? 'noopener noreferrer' : undefined}
-              className="flex items-baseline gap-4 group transition-all"
-            >
-              <span className="font-medium w-24" style={{ color: 'var(--accent)' }}>
-                {link.name}
-              </span>
-              <span className="text-lg text-gray-900 dark:text-gray-100 link-underline group-hover:opacity-60 transition-opacity">
-                {link.value}
-              </span>
-            </a>
-          ))}
-        </div>
+        <Reveal delay={200}>
+          <div className="space-y-4">
+            {contactContent.links.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target={link.name !== 'Email' ? '_blank' : undefined}
+                rel={link.name !== 'Email' ? 'noopener noreferrer' : undefined}
+                className="flex items-baseline gap-6 group transition-all"
+              >
+                <span className="label w-20 flex-shrink-0">
+                  {link.name}
+                </span>
+                <span className="text-lg text-gray-900 dark:text-gray-100 link-underline group-hover:opacity-60 transition-opacity duration-300">
+                  {link.value}
+                </span>
+              </a>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,6 +1,8 @@
 # Sam Shahsavani - Personal Portfolio
 
-A minimal, beautiful personal website showcasing AI Product Development and PropTech projects.
+A minimal editorial portfolio for Sam's architecture, data workflow, and tool-building work.
+
+Content is adapted from the source-of-truth layer in `../00-Personal/source/`, especially `../00-Personal/source/narrative.md` for voice and positioning.
 
 ## Tech Stack
 
@@ -49,22 +51,26 @@ npm start
 │   ├── ThemeProvider.tsx  # Dark mode context
 │   ├── Header.tsx         # Navigation header
 │   ├── Hero.tsx           # Hero section
+│   ├── Proof.tsx          # Metrics strip + featured proof section
 │   ├── Projects.tsx       # Featured projects
 │   ├── About.tsx          # About section
 │   └── Contact.tsx        # Contact section
+├── lib/
+│   ├── site-content.ts    # Homepage, metadata, and contact copy adapted from narrative.md
+│   └── projects-data.ts   # Project cards and project detail content adapted from source modules
 └── public/             # Static assets
 ```
 
 ## Customization
 
 ### Update Projects
-Edit the `projects` array in `components/Projects.tsx` to add/modify projects.
+Update the relevant `../00-Personal/source/` module first, then sync `lib/projects-data.ts`.
 
 ### Update Contact Links
-Edit the `contactLinks` array in `components/Contact.tsx` to update contact information.
+Edit `lib/site-content.ts` to update contact information.
 
 ### Update Content
-Modify the copy in each component file to update section content.
+For positioning or tone changes, update `../00-Personal/source/narrative.md` first. Then sync `lib/site-content.ts` for homepage, metadata, and contact copy. Components should stay mostly presentational.
 
 ## Deployment
 

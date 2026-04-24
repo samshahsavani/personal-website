@@ -18,6 +18,9 @@
 .DS_Store
 *.pem
 
+# oversized source videos; website uses compressed exports without the " 2" suffix
+public/thesis/videos/* 2.mp4
+
 # debug
 npm-debug.log*
 yarn-debug.log*
