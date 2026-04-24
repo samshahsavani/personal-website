@@ -157,14 +157,6 @@ const presentationImages = [
     frame: 'wide',
     featured: false,
   },
-  {
-    src: '/zoningpal/ai-tinkerers-zoningpal-title-audience-3x2.png',
-    alt: 'Alternate audience view of the ZoningPal title slide at AI Tinkerers Toronto',
-    caption:
-      'Alternate room view showing the size and setting of the presentation.',
-    frame: 'photo',
-    featured: false,
-  },
 ] as const;
 
 function BackLink() {
