@@ -147,5 +147,10 @@ export const contactContent = {
       value: 'linkedin.com/in/sam-shahsavani',
       href: 'https://www.linkedin.com/in/sam-shahsavani/',
     },
+    {
+      name: 'GitHub',
+      value: 'github.com/samshahsavani',
+      href: 'https://github.com/samshahsavani',
+    },
   ],
 } as const;
