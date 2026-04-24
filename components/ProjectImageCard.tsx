@@ -5,6 +5,7 @@ export type ProjectImageFrame =
   | 'screen'
   | 'paper'
   | 'portrait'
+  | 'photo'
   | 'wide'
   | 'panorama';
 
@@ -24,6 +25,7 @@ const frameClasses: Record<ProjectImageFrame, string> = {
   screen: 'aspect-[16/10]',
   paper: 'aspect-[4/5]',
   portrait: 'aspect-[4/5]',
+  photo: 'aspect-[3/2]',
   wide: 'aspect-[16/9]',
   panorama: 'aspect-[21/9]',
 };

@@ -118,16 +118,52 @@ const architectureLayers = [
 
 const presentationImages = [
   {
-    src: '/zoningpal/ai-tinkerers-shopify-audience-wide.png',
+    src: '/zoningpal/ai-tinkerers-zoningpal-title-audience-wide.png',
     alt: 'Audience at the ZoningPal presentation during AI Tinkerers Toronto in Shopify Toronto',
     caption:
       'ZoningPal presented publicly at AI Tinkerers Toronto in Shopify’s Toronto office.',
+    frame: 'wide',
+    featured: true,
   },
   {
-    src: '/zoningpal/ai-tinkerers-shopify-live-demo.png',
+    src: '/zoningpal/ai-tinkerers-zoningpal-map-analysis-demo.png',
     alt: 'ZoningPal live demo on screen during the AI Tinkerers Toronto presentation',
     caption:
       'Live product demo showing the zoning map and analysis interface during the presentation.',
+    frame: 'photo',
+    featured: false,
+  },
+  {
+    src: '/zoningpal/ai-tinkerers-zoningpal-report-demo-closeup.png',
+    alt: 'Close-up of ZoningPal report output during the AI Tinkerers Toronto presentation',
+    caption:
+      'Report output walkthrough: parcel context, zoning status, and development metrics in the generated brief.',
+    frame: 'wide',
+    featured: false,
+  },
+  {
+    src: '/zoningpal/ai-tinkerers-zoningpal-title-presenter.png',
+    alt: 'Sam presenting the ZoningPal title slide at AI Tinkerers Toronto',
+    caption:
+      'Title slide and presenter shot from the public ZoningPal presentation.',
+    frame: 'photo',
+    featured: false,
+  },
+  {
+    src: '/zoningpal/ai-tinkerers-zoningpal-thank-you-qr.png',
+    alt: 'ZoningPal thank-you slide with QR code at AI Tinkerers Toronto',
+    caption:
+      'Closing slide with a direct product call-to-action and QR code for attendees.',
+    frame: 'wide',
+    featured: false,
+  },
+  {
+    src: '/zoningpal/ai-tinkerers-zoningpal-title-audience-3x2.png',
+    alt: 'Alternate audience view of the ZoningPal title slide at AI Tinkerers Toronto',
+    caption:
+      'Alternate room view showing the size and setting of the presentation.',
+    frame: 'photo',
+    featured: false,
   },
 ] as const;
 
@@ -466,15 +502,24 @@ export default function ZoningPalPage() {
             ))}
           </div>
 
-          <div className="lg:col-span-8 mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="lg:col-span-12 mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
             {presentationImages.map((image, index) => (
-              <Reveal key={image.src} delay={120 + index * 80}>
+              <Reveal
+                key={image.src}
+                delay={120 + index * 80}
+                className={image.featured ? 'md:col-span-2' : undefined}
+              >
                 <ProjectImageCard
                   src={image.src}
                   alt={image.alt}
                   caption={image.caption}
-                  frame="wide"
-                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  frame={image.frame}
+                  priority={index === 0}
+                  sizes={
+                    image.featured
+                      ? '(min-width: 1024px) 66vw, 100vw'
+                      : '(min-width: 1024px) 33vw, 100vw'
+                  }
                 />
               </Reveal>
             ))}
