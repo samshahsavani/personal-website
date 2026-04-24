@@ -14,10 +14,21 @@ const photoPath = (n: number) =>
   `/thesis/photos/presentation-${String(n).padStart(2, '0')}.jpg`;
 
 /* ─── Expandable Image Wrapper (Lightbox) ─── */
-function LightboxImage({ src, alt, width, height, className, quality, priority, sizes }: any) {
+function LightboxImage({
+  src,
+  alt,
+  width,
+  height,
+  className,
+  quality,
+  priority,
+  sizes,
+  fullResolutionZoom = false,
+}: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
   const previewSrc = imagePreviewSrc(src);
+  const zoomSrc = fullResolutionZoom ? src : previewSrc;
 
   useEffect(() => {
     if (isOpen) {
@@ -64,7 +75,7 @@ function LightboxImage({ src, alt, width, height, className, quality, priority, 
           onClick={() => setIsOpen(false)}
         >
           <img 
-            src={src} 
+            src={zoomSrc} 
             alt={alt} 
             className={`transition-all duration-300 ease-in-out shadow-2xl bg-white ${
               isZoomed 
@@ -501,6 +512,7 @@ export default function ThesisNarrative() {
                   className="min-w-[1000px] w-full h-auto"
                   quality={90}
                   sizes="100vw"
+                  fullResolutionZoom
                 />
               </div>
             </div>
@@ -819,6 +831,7 @@ export default function ThesisNarrative() {
                     className="min-w-[1200px] w-full h-auto"
                     quality={90}
                     sizes="100vw"
+                    fullResolutionZoom
                   />
                 </div>
               </div>

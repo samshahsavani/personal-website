@@ -40,7 +40,7 @@ export default function ExpandableImage({
   const [isOpen, setIsOpen] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
   const displaySrc = previewSrc ?? imagePreviewSrc(src);
-  const zoomSrc = fullSrc ?? src;
+  const zoomSrc = fullSrc ?? displaySrc;
 
   useEffect(() => {
     if (!isOpen) return;
