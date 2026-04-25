@@ -2,7 +2,7 @@
 
 A minimal editorial portfolio for Sam's architecture, data workflow, and tool-building work.
 
-Content is adapted from the source-of-truth layer in `../00-Personal/source/`, especially `../00-Personal/source/narrative.md` for voice and positioning.
+Content is adapted from the source-of-truth layer in `../00-Source/personal/`, especially `../00-Source/personal/narrative.md` for voice and positioning.
 
 ## Tech Stack
 
@@ -64,14 +64,14 @@ npm start
 ## Customization
 
 ### Update Projects
-Update the relevant `../00-Personal/source/` module first, then sync `lib/projects-data.ts`.
+Update the relevant `../00-Source/personal/` module first, then sync `lib/projects-data.ts`.
 
 ### Update Assets
-Source assets live in `../00-Personal/source/`. Website files in `public/` are deployable copies, not the source of truth.
+Source assets live in `../00-Source/personal/`. Website files in `public/` are deployable copies, not the source of truth.
 
 When adding or replacing website imagery:
 
-1. Put the canonical asset in the relevant `../00-Personal/source/.../assets/` folder.
+1. Put the canonical asset in the relevant `../00-Source/personal/.../assets/` folder.
 2. Copy only the selected website-ready asset into `public/`.
 3. Run `npm run optimize:images`.
 4. Treat `public/optimized/` as generated output.
@@ -80,7 +80,7 @@ When adding or replacing website imagery:
 Edit `lib/site-content.ts` to update contact information.
 
 ### Update Content
-For positioning or tone changes, update `../00-Personal/source/narrative.md` first. Then sync `lib/site-content.ts` for homepage, metadata, and contact copy. Components should stay mostly presentational.
+For positioning or tone changes, update `../00-Source/personal/narrative.md` first. Then sync `lib/site-content.ts` for homepage, metadata, and contact copy. Components should stay mostly presentational.
 
 ## Deployment
 

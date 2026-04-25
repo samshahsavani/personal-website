@@ -1,4 +1,4 @@
-// Website adapter for 00-Personal/source/narrative.md and public source modules.
+// Website adapter for 00-Source/personal/narrative.md and public source modules.
 // Update narrative.md for positioning changes, source modules for factual changes, then sync this file.
 
 export const siteMetadata = {

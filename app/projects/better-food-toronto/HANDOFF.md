@@ -1,7 +1,7 @@
 # Better Food Toronto — Thesis Narrative Component Handoff
 
 > This documents the current state of the thesis scroll-narrative at `ThesisNarrative.tsx`.
-> Part of the `05-Website` project within Sam's `06-Vision` Career Operating System.
+> Part of the `03-Website` project within Sam's `06-Vision` Career Operating System.
 
 ---
 

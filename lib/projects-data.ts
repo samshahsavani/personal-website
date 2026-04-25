@@ -22,7 +22,7 @@ export interface Project {
 }
 
 export const projectsData: Project[] = [
-  // ─── Source: 00-Personal/source/education/education.md + thesis materials ───
+  // ─── Source: 00-Source/personal/education/education.md + thesis materials ───
   {
     id: "better-food-toronto",
     name: "Better Food Toronto",
@@ -39,7 +39,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Personal/source/stoop/stoop.md → ZoningPal ───
+  // ─── Source: 00-Source/personal/stoop/stoop.md → ZoningPal ───
   {
     id: "zoningpal",
     name: "ZoningPal",
@@ -56,7 +56,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Personal/source/stoop/stoop.md → Bloom Hub ───
+  // ─── Source: 00-Source/personal/stoop/stoop.md → Bloom Hub ───
   {
     id: "bloom-hub",
     name: "Bloom Hub",
@@ -99,7 +99,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Personal/source/parkin/parkin.md ───
+  // ─── Source: 00-Source/personal/parkin/parkin.md ───
   {
     id: "parkin-tools",
     name: "Finish Coordination Tools",
@@ -116,7 +116,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Personal/source/bnh/bnh.md + 00-Personal/source/parkin/parkin.md ───
+  // ─── Source: 00-Source/personal/bnh/bnh.md + 00-Source/personal/parkin/parkin.md ───
   {
     id: "bim-data-orchestration",
     name: "BIM Data Orchestration",
@@ -132,7 +132,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Personal/source/stoop/stoop.md → Stoop ───
+  // ─── Source: 00-Source/personal/stoop/stoop.md → Stoop ───
   {
     id: "stoop",
     name: "Stoop",
@@ -161,7 +161,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Personal/source/sheeep/sheeep.md → Staging Grounds ───
+  // ─── Source: 00-Source/personal/sheeep/sheeep.md → Staging Grounds ───
   {
     id: "staging-grounds",
     name: "Staging Grounds",
@@ -212,7 +212,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Personal/source/bnh/bnh.md → AI Design Workflows ───
+  // ─── Source: 00-Source/personal/bnh/bnh.md → AI Design Workflows ───
   {
     id: "ai-design-workflows",
     name: "AI Design Workflows",
