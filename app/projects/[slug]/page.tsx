@@ -184,7 +184,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
             <Reveal>
               <div>
-                <span className="label block mb-4">What It Shows</span>
+                <span className="label block mb-4">Outcome</span>
                 <p className="text-[17px] text-gray-700 dark:text-gray-300 leading-[1.8] max-w-2xl">
                   {project.fullContent.impact}
                 </p>

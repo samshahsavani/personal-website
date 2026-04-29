@@ -86,7 +86,7 @@ const contentImages: ImageSpec[] = [
   {
     src: '/bim-data/unifi-content-request-form.png',
     alt: 'UNIFI content request form for a Revit family',
-    caption: 'Public-safe content request evidence: a project need translated into a family creation task.',
+    caption: 'A content request translating a project need into a family creation task.',
     fit: 'contain',
     frame: 'screen',
   },
@@ -117,14 +117,14 @@ const qaImages: ImageSpec[] = [
   {
     src: '/bim-data/drofus-equipment-items-table.png',
     alt: 'dRofus equipment item table',
-    caption: 'Public-safe dRofus view showing how item numbers, BIM IDs, and planning data were connected.',
+    caption: 'dRofus view showing how item numbers, BIM IDs, and planning data were connected.',
     fit: 'contain',
     frame: 'screen',
   },
   {
     src: '/bim-data/door-schedule-discrepancy-log.png',
     alt: 'Door schedule discrepancy log',
-    caption: 'Public-safe schedule discrepancy evidence from the same data-integrity problem.',
+    caption: 'Schedule discrepancy log from the same data-integrity problem.',
     fit: 'contain',
     frame: 'screen',
   },
@@ -138,7 +138,7 @@ const qaImages: ImageSpec[] = [
   {
     src: '/bim-data/accessory-utility-data-report.png',
     alt: 'Accessory Utility Data Report spreadsheet screenshot',
-    caption: 'Actual public-safe AUDR spreadsheet screenshot showing aggregated accessory quantities and report structure.',
+    caption: 'AUDR spreadsheet view showing aggregated accessory quantities and report structure.',
     fit: 'contain',
     frame: 'screen',
   },
@@ -337,12 +337,12 @@ const reportPages: RDRPage[] = [
 
 const claims = [
   {
-    label: 'Scope Boundary',
-    title: 'Not ownership of every project database across all firms',
-    body: 'The scope is B+H-side workflow ownership under Arcadis as prime consultant. That distinction keeps the page precise and credible.',
+    label: 'Role Boundary',
+    title: 'One side of a multi-firm system, run end to end',
+    body: 'My role covered the B+H-side workflow under Arcadis as prime consultant: content, links, QA, reports, and coordination across the room-data handoff.',
   },
   {
-    label: 'What It Shows',
+    label: 'Workflow',
     title: 'A source-of-truth workflow between content, data, QA, and reports',
     body: 'The work connected Revit families, shared parameters, dRofus records, placement checks, discrepancy cleanup, and Room Data Report outputs.',
   },
@@ -351,7 +351,7 @@ const claims = [
 export const metadata: Metadata = {
   title: 'BIM Data Orchestration | Sam Shahsavani',
   description:
-    'A healthcare BIM data workflow case study connecting Revit, dRofus, UNIFI, QA, and Room Data Reports on the Halifax Infirmary Expansion.',
+    'Healthcare BIM data workflow connecting Revit, dRofus, UNIFI, QA, and Room Data Reports on the Halifax Infirmary Expansion.',
   keywords: [
     'BIM Data',
     'dRofus',
@@ -541,7 +541,7 @@ function RoomDataReportReplica({ report }: { report: RDRPage }) {
         </div>
       </div>
       <figcaption className="flex min-h-[76px] items-start border-t border-black/[0.06] p-4 text-xs leading-relaxed text-gray-500 dark:border-white/[0.06] dark:text-gray-400">
-        Public-safe HTML reconstruction. Room names, IDs, references, and values are modified to show the report structure without exposing project records.
+        Reconstructed report format with modified room names, IDs, references, and values to show the structure without exposing project records.
       </figcaption>
     </figure>
   );
@@ -669,7 +669,7 @@ export default function BIMDataOrchestrationPage() {
             <SectionHeading
               eyebrow="Output"
               title="Room Data Reports made the invisible workflow visible."
-              body="The RDR is the strongest artifact because it shows how many different data categories had to resolve into one room-level output. The report pages below are public-safe reconstructions with modified values, paired with the public-safe AUDR screenshot shown above."
+              body="The RDR pulls the whole workflow into one room-level output. The report pages below reconstruct the report format with modified values, paired with the AUDR view shown above."
             />
           </Reveal>
 
@@ -711,8 +711,8 @@ export default function BIMDataOrchestrationPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Scope"
-              title="Precise ownership makes the work stronger."
-              body="The case study focuses on B+H-side data workflow leadership: content, links, QA, reports, and team communication within a larger multi-firm delivery structure."
+              title="One defined workflow inside a larger delivery system."
+              body="My role focused on B+H-side data workflow leadership: content, links, QA, reports, and team communication within a larger multi-firm delivery structure."
             />
           </Reveal>
 
@@ -734,10 +734,10 @@ export default function BIMDataOrchestrationPage() {
         <div className="max-w-6xl mx-auto border border-black/[0.08] dark:border-white/[0.08] p-8 md:p-12">
           <Reveal>
             <div className="max-w-3xl">
-              <span className="label block mb-5">Signal</span>
+              <span className="label block mb-5">Operating Pattern</span>
               <h2 className="mb-6 text-3xl md:text-5xl font-light leading-tight tracking-[-0.02em]">Messy AEC data systems become useful when the hidden dependencies are made visible.</h2>
               <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                The durable signal is the operating pattern: understand the source-of-truth problem, keep content and data aligned, QA the handoffs, and explain the system clearly enough for a team to use it.
+                The work depended on understanding the source-of-truth problem, keeping content and data aligned, QAing the handoffs, and explaining the system clearly enough for a team to use it.
               </p>
             </div>
           </Reveal>

@@ -60,10 +60,10 @@ const principles = [
   },
   {
     label: 'Rule Based',
-    body: 'The value is not a pretty UI alone. It is repeatable checks, mappings, and exported evidence.',
+    body: 'Repeatable checks, mappings, and exported reports mattered more than interface polish.',
   },
   {
-    label: 'Shareable Evidence',
+    label: 'Reviewable Output',
     body: 'Screenshots here use fictional sample workbooks that preserve the workflow without exposing project records.',
   },
 ] as const;
@@ -78,7 +78,7 @@ const toolFlows: ToolFlow[] = [
       'Two-file upload: room report plus finish item reference.',
       'Column mapping keeps the tool tolerant of real spreadsheet naming.',
       'Rules are editable before the audit runs.',
-      'The export becomes the evidence layer: not just a dashboard state.',
+      'The export carries the review back into Excel, not just a dashboard state.',
     ],
     screenshots: [
       {
@@ -303,7 +303,7 @@ const toolFlows: ToolFlow[] = [
 export const metadata: Metadata = {
   title: 'Finish Coordination Tools | Sam Shahsavani',
   description:
-    'A public-safe case study of local browser tools for finish QA, template lookup, room-type coding, and healthcare BIM coordination workflows.',
+    'Local browser tools for finish QA, template lookup, room-type coding, and healthcare BIM coordination workflows.',
   keywords: [
     'AEC tools',
     'BIM coordination',
@@ -456,7 +456,7 @@ export default function ParkinToolsPage() {
             <div className="border border-black/[0.08] dark:border-white/[0.08] p-7 md:p-8 bg-black/[0.015] dark:bg-white/[0.02]">
               <span className="label block mb-5">Scope</span>
               <p className="text-lg md:text-xl leading-relaxed text-gray-800 dark:text-gray-200">
-                These are local coordination tools, not a public SaaS product. Their value is practical: they fit an existing workflow, keep data on the user machine, and return reviewable Excel evidence.
+                These are local coordination tools, not a public SaaS product. Their value is practical: they fit an existing workflow, keep data on the user machine, and return reviewable Excel exports.
               </p>
             </div>
           </Reveal>
@@ -541,12 +541,12 @@ export default function ParkinToolsPage() {
         <div className="max-w-6xl mx-auto border border-black/[0.08] dark:border-white/[0.08] p-8 md:p-12">
           <Reveal>
             <div className="max-w-4xl">
-              <span className="label block mb-5">Signal</span>
+              <span className="label block mb-5">Operating Pattern</span>
               <h2 className="mb-6 text-3xl md:text-5xl font-light leading-tight tracking-[-0.02em]">
                 Project-specific coordination pain can become tools a team actually uses.
               </h2>
               <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                The durable signal is product judgment: understand the messy source files, avoid overengineering, keep data local, build the narrow workflow, and return evidence in the format the team already trusts.
+                The work depended on product judgment: understand the messy source files, avoid overengineering, keep data local, build the narrow workflow, and return results in the format the team already trusts.
               </p>
             </div>
           </Reveal>

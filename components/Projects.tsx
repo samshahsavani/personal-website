@@ -13,7 +13,7 @@ export default function Projects() {
   );
 
   return (
-    <section id="projects" className="py-24 px-6">
+    <section id="more-work" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <h2 className="mb-16">More Work</h2>

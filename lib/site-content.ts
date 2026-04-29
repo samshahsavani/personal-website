@@ -1,13 +1,13 @@
-// Website adapter for 00-Source/personal/narrative.md and public source modules.
+// Website adapter for 00-Source/public/narrative.md and public source modules.
 // Update narrative.md for positioning changes, source modules for factual changes, then sync this file.
 
 export const siteMetadata = {
   title: 'Sam Shahsavani',
-  description: 'Architecture data workflows, healthcare BIM delivery, and product-minded tool building.',
+  description: 'Healthcare BIM, architecture data workflows, and product-minded AEC tool building.',
   keywords: [
-    'BIM Coordinator',
+    'Healthcare BIM',
     'AEC-Tech',
-    'Product Developer',
+    'AEC Tool Building',
     'ZoningPal',
     'Architecture',
     'Digital Delivery',
@@ -111,7 +111,7 @@ export const aboutContent = {
   paragraphs: [
     "For the last few years I've been running BIM data on two of Canada's largest hospital projects: The Ottawa Hospital ($2B+) and the Halifax Infirmary Expansion ($2B). On both I managed the dRofus and Revit workflow, built the QA process before builder submissions, and created tools when the team needed something that didn't exist yet.",
     "That same pattern carries into the product work. ZoningPal came from seeing how much time architecture teams lose to zoning research. Bloom Hub came from pushing the workflow further, from early input to 3D output, zoning intelligence, site finding, and project context.",
-    "My background is in architecture, but most of the work I care about sits in the overlap between design, data, and implementation. That's where I tend to be most useful.",
+    "Earlier on I worked in design and fabrication contexts as well, but most of the work I care about now sits in the overlap between design, data, and implementation. That's where I tend to be most useful.",
   ],
   sections: [
     {

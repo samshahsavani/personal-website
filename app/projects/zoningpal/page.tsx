@@ -473,8 +473,8 @@ export default function ZoningPalPage() {
             <div className="lg:sticky lg:top-28">
               <SectionHeading
                 eyebrow="Adoption"
-                title="Live product, modest proof, public presentation"
-                body="The proof is specific: the report flow shipped, paid uses happened, the API was integrated into Bloom Hub, and the product was presented publicly. This page is not framed as scaled adoption."
+                title="Live report flow, integration, and public demos"
+                body="ZoningPal shipped as a paid report flow, was integrated into Bloom Hub through the API, and was presented publicly through AI Tinkerers Toronto and Innovate Toronto."
               />
             </div>
           </Reveal>
@@ -525,7 +525,7 @@ export default function ZoningPalPage() {
             <span className="label block mb-4">Sample Output</span>
             <h2 className="mb-5">A generated informational zoning brief</h2>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-              This sample report is the clearest portfolio artifact because it shows the end-to-end product: parcel context, governing controls, standards, permitted uses, form controls, references, glossary, and disclaimer.
+              The sample report pulls the product together end to end: parcel context, governing controls, standards, permitted uses, form controls, references, glossary, and disclaimer.
             </p>
           </div>
         </Reveal>

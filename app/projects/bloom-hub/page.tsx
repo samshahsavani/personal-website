@@ -170,7 +170,7 @@ const scopeSignals = [
   {
     label: 'System Architecture',
     title: 'A private AEC product that connected design tools and information tools',
-    body: 'The value is the product architecture: project context, AI design workflows, geometry generation, zoning intelligence, site search, storage, and chat in one workspace.',
+    body: 'The product architecture connected project context, AI design workflows, geometry generation, zoning intelligence, site search, storage, and chat in one workspace.',
   },
 ] as const;
 
@@ -383,7 +383,7 @@ export default function BloomHubPage() {
               <div className="mb-6 border border-black/[0.08] dark:border-white/[0.08] bg-black/[0.015] dark:bg-white/[0.015] p-7 md:p-8">
                 <span className="label block mb-5">Why It Matters</span>
                 <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                  This sits in the same problem category as mature design-automation tools, but the claim here is narrower: a functional solo-built core architecture for sketch input, geometry extraction, semantic interpretation, model generation, and project persistence.
+                  This sits in the same problem category as mature design-automation tools, but the focus here is narrower: a functional solo-built core architecture for sketch input, geometry extraction, semantic interpretation, model generation, and project persistence.
                 </p>
               </div>
             </Reveal>
@@ -409,7 +409,7 @@ export default function BloomHubPage() {
             <SectionHeading
               eyebrow="Zoning + Site Intelligence"
               title="The information side was as important as the design side."
-              body="Bloom Hub connected the ZoningPal report flow and a Toronto parcel finder into the same workspace. That makes the product story stronger: design decisions and feasibility information lived beside each other."
+              body="Bloom Hub connected the ZoningPal report flow and a Toronto parcel finder into the same workspace, so design decisions and feasibility information lived beside each other."
             />
           </Reveal>
 
@@ -464,7 +464,7 @@ export default function BloomHubPage() {
         <div className="max-w-6xl mx-auto border border-black/[0.08] dark:border-white/[0.08] p-8 md:p-12">
           <Reveal>
             <div className="max-w-3xl">
-              <span className="label block mb-5">Signal</span>
+              <span className="label block mb-5">Takeaway</span>
               <h2 className="mb-6 text-3xl md:text-5xl font-light leading-tight tracking-[-0.02em]">Project context can hold design tools and information tools together.</h2>
               <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 Bloom Hub shows both halves of the work: understanding what architects actually need, then building the interface, data model, geometry pipeline, and services that let those workflows live together in one place.

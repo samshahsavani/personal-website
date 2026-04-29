@@ -143,7 +143,7 @@ const toolEvidence: {
   {
     label: 'ComfyUI',
     title: 'Node-based local workflow',
-    body: 'The complexity is part of the evidence. This was not a single prompt box; it was a local graph of models, conditioning, image inputs, and output handling.',
+    body: 'This was not a single prompt box. It was a local graph of models, conditioning, image inputs, and output handling.',
     image: {
       src: '/ai-workflows/tool-comfyui-node-workflow.jpg',
       alt: 'ComfyUI node graph for local architectural visualization',
@@ -230,7 +230,7 @@ const caseStudies: {
   image: ImageSpec;
 }[] = [
   {
-    label: 'Case Study 01',
+    label: 'Project 01',
     title: 'Entertainment and retail concept exploration',
     body: 'A concept image used to test mood, scale, lighting, and public-facing atmosphere during early design iteration.',
     image: {
@@ -241,7 +241,7 @@ const caseStudies: {
     },
   },
   {
-    label: 'Case Study 02',
+    label: 'Project 02',
     title: 'High-rise hotel context composite',
     body: 'A tower concept moved from sketch and massing through controlled generation and Photoshop placement into an urban context.',
     image: {
@@ -256,12 +256,12 @@ const caseStudies: {
 
 const claims = [
   {
-    label: 'Scope Boundary',
+    label: 'Scope',
     title: 'Not AI designing architecture by itself',
     body: 'The work is not autonomous design or final client rendering. It is a controlled visualization workflow for early design review.',
   },
   {
-    label: 'What It Shows',
+    label: 'Workflow',
     title: 'A controlled visualization layer for early design',
     body: 'The useful work was translating immature AI tools into a local workflow for architects: private, constrained, iterative, and tied to design intent.',
   },
@@ -385,7 +385,7 @@ export default function AIDesignWorkflowsPage() {
             <SectionHeading
               eyebrow="Why It Mattered Then"
               title="The difficulty was not the image. It was making the image useful."
-              body="In 2024, the workflow still had to be assembled by hand. That is the point worth showing: local setup, model testing, control images, inpainting, and compositing all had to be made usable inside real design constraints."
+              body="In 2024, the workflow still had to be assembled by hand: local setup, model testing, control images, inpainting, and compositing all had to be made usable inside real design constraints."
             />
           </Reveal>
 
@@ -437,7 +437,7 @@ export default function AIDesignWorkflowsPage() {
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <SectionHeading
-              eyebrow="Tool Evidence"
+              eyebrow="Tooling"
               title="The complexity makes the workflow visible."
               body="The screenshots show the historical limitation: the workflow was not packaged yet. It had to be constructed from local interfaces, node graphs, settings, prompts, control inputs, and manual finishing."
             />
@@ -484,7 +484,7 @@ export default function AIDesignWorkflowsPage() {
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <SectionHeading
-              eyebrow="Project Evidence"
+              eyebrow="Project Range"
               title="Two design situations, one repeatable method"
               body="The value was not a single lucky image. The same pattern could move across different project types because the workflow was based on controls, not only prompts."
             />
@@ -519,8 +519,8 @@ export default function AIDesignWorkflowsPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Scope"
-              title="The strongest version is precise."
-              body="The work feels advanced because the constraints were real: local execution, confidentiality, controlled inputs, and design judgment."
+              title="Real constraints made the workflow useful."
+              body="The workflow mattered because the constraints were real: local execution, confidentiality, controlled inputs, and design judgment."
             />
           </Reveal>
 
@@ -542,10 +542,10 @@ export default function AIDesignWorkflowsPage() {
         <div className="max-w-6xl mx-auto border border-black/[0.08] dark:border-white/[0.08] p-8 md:p-12">
           <Reveal>
             <div className="max-w-3xl">
-              <span className="label block mb-5">Signal</span>
+              <span className="label block mb-5">Operating Pattern</span>
               <h2 className="mb-6 text-3xl md:text-5xl font-light leading-tight tracking-[-0.02em]">Emerging tools become valuable when the workflow respects the work.</h2>
               <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                The specific 2024 methods will keep aging, but the operating pattern is still relevant: understand the design problem, respect confidentiality, build the missing workflow, test it against real project constraints, and communicate the result clearly enough for a team to use.
+                The specific 2024 methods will keep aging, but the pattern still matters: understand the design problem, respect confidentiality, build the missing workflow, test it against real project constraints, and communicate the result clearly enough for a team to use.
               </p>
             </div>
           </Reveal>

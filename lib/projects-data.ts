@@ -22,7 +22,7 @@ export interface Project {
 }
 
 export const projectsData: Project[] = [
-  // ─── Source: 00-Source/personal/education/education.md + thesis materials ───
+  // ─── Source: 00-Source/public/education/education.md + thesis materials ───
   {
     id: "better-food-toronto",
     name: "Better Food Toronto",
@@ -39,7 +39,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Source/personal/stoop/stoop.md → ZoningPal ───
+  // ─── Source: 00-Source/public/stoop/stoop.md → ZoningPal ───
   {
     id: "zoningpal",
     name: "ZoningPal",
@@ -56,7 +56,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Source/personal/stoop/stoop.md → Bloom Hub ───
+  // ─── Source: 00-Source/public/stoop/stoop.md → Bloom Hub ───
   {
     id: "bloom-hub",
     name: "Bloom Hub",
@@ -99,7 +99,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Source/personal/parkin/parkin.md ───
+  // ─── Source: 00-Source/public/parkin/parkin.md ───
   {
     id: "parkin-tools",
     name: "Finish Coordination Tools",
@@ -116,7 +116,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Source/personal/bnh/bnh.md + 00-Source/personal/parkin/parkin.md ───
+  // ─── Source: 00-Source/public/bnh/bnh.md + 00-Source/public/parkin/parkin.md ───
   {
     id: "bim-data-orchestration",
     name: "BIM Data Orchestration",
@@ -132,7 +132,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Source/personal/stoop/stoop.md → Stoop ───
+  // ─── Source: 00-Source/public/stoop/stoop.md → Stoop ───
   {
     id: "stoop",
     name: "Stoop",
@@ -144,7 +144,7 @@ export const projectsData: Project[] = [
       overview: "Stoop was my first public shipped product: a native iOS app that lets people capture, browse, and collect usable furniture left on the street. It turned an Instagram-based community behavior into a map-based product.",
       challenge: "Curbside reuse already had demand, but discovery was fragmented. People photographed street-found furniture, waited for social accounts to repost it, and often missed the narrow window before items disappeared or went to landfill.",
       solution: "The app lets users photograph an item, add a description, auto-geotag the location, browse nearby finds on a map, search by text, open clustered map results, and call dibs on an item. The beta was built as a native iOS app with SwiftUI, MapKit, CoreLocation, Firebase Auth, Firestore, and Firebase Storage.",
-      impact: "Co-founded with Alireza, published on the App Store, and presented at Collision 2024 as an Alpha team. Stoop is not the technical centerpiece of the portfolio, but it remains a useful proof point: a shipped public app, an App Store release, and an early experience learning from real users.",
+      impact: "Co-founded with Alireza, published on the App Store, and presented at Collision 2024 as an Alpha team. It remains an important early product experience: a shipped public app, an App Store release, and direct learning from real users.",
       technologies: ["SwiftUI", "MapKit", "CoreLocation", "Firebase Auth", "Firestore", "Firebase Storage", "iOS"],
       images: [
         {
@@ -155,13 +155,13 @@ export const projectsData: Project[] = [
         {
           src: "/stoop/stoop-collision-alpha-team-02.jpg",
           alt: "Stoop Inc. team at Collision 2024",
-          caption: "The public signal is modest but real: a shipped app, an App Store presence, and a Collision Alpha booth.",
+          caption: "A shipped app, an App Store presence, and a Collision Alpha booth.",
         },
       ],
     },
   },
 
-  // ─── Source: 00-Source/personal/sheeep/sheeep.md → Staging Grounds ───
+  // ─── Source: 00-Source/public/sheeep/sheeep.md → Staging Grounds ───
   {
     id: "staging-grounds",
     name: "Staging Grounds",
@@ -212,7 +212,7 @@ export const projectsData: Project[] = [
     },
   },
 
-  // ─── Source: 00-Source/personal/bnh/bnh.md → AI Design Workflows ───
+  // ─── Source: 00-Source/public/bnh/bnh.md → AI Design Workflows ───
   {
     id: "ai-design-workflows",
     name: "AI Design Workflows",

@@ -8,7 +8,7 @@ export default function Proof() {
   const featuredLogoIsWide = proofContent.featured.logo.includes('bloom-hub-logo');
 
   return (
-    <section className="px-6 pb-24">
+    <section id="projects" className="px-6 pb-24">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <Reveal className="lg:col-span-4">
