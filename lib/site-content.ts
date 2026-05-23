@@ -3,7 +3,10 @@
 
 export const siteMetadata = {
   title: 'Sam Shahsavani',
-  description: 'Healthcare BIM, architecture data workflows, and product-minded AEC tool building.',
+  siteName: 'Sam Shahsavani',
+  url: 'https://samshahsavani.com',
+  description:
+    'Sam Shahsavani works across healthcare BIM, architecture data workflows, and AEC tool-building. His work includes ZoningPal, Bloom Hub, hospital BIM data workflows, and field research on urban systems.',
   keywords: [
     'Healthcare BIM',
     'AEC-Tech',
@@ -135,7 +138,7 @@ export const aboutContent = {
 
 export const contactContent = {
   title: 'Contact',
-  intro: 'US citizen based in Toronto. Best for thoughtful conversations around AEC-tech, healthcare delivery workflows, and product-minded tools.',
+  intro: 'For thoughtful conversations around AEC-tech, healthcare delivery workflows, civic data, and product-minded tools.',
   links: [
     {
       name: 'Email',

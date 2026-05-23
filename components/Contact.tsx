@@ -3,7 +3,11 @@ import { contactContent } from '@/lib/site-content';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6 border-t border-black/[0.04] dark:border-white/[0.04]">
+    <section
+      id="contact"
+      data-nosnippet
+      className="py-24 px-6 border-t border-black/[0.04] dark:border-white/[0.04]"
+    >
       <div className="max-w-4xl mx-auto">
         <Reveal>
           <h2 className="mb-4">{contactContent.title}</h2>
