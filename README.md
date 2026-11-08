@@ -2,7 +2,7 @@
 
 A minimal editorial portfolio for Sam's architecture, data workflow, and tool-building work.
 
-Content is adapted from the source-of-truth layer in `../00-Source/public/`, especially `../00-Source/public/narrative.md` for voice and positioning.
+This repository is the source for the website. Project evidence stays with each project in Drive. Career-wide positioning and portfolio records live in Vision.
 
 ## Tech Stack
 
@@ -56,7 +56,7 @@ npm start
 │   ├── About.tsx          # About section
 │   └── Contact.tsx        # Contact section
 ├── lib/
-│   ├── site-content.ts    # Homepage, metadata, and contact copy adapted from narrative.md
+│   ├── site-content.ts    # Homepage, metadata, and contact copy adapted from the positioning note
 │   └── projects-data.ts   # Project cards and project detail content adapted from source modules
 └── public/             # Static assets
 ```
@@ -64,14 +64,14 @@ npm start
 ## Customization
 
 ### Update Projects
-Update the relevant `../00-Source/public/` module first, then sync `lib/projects-data.ts`.
+Update the project narrative in Work or Education first. Then adapt the relevant content in `lib/projects-data.ts`.
 
 ### Update Assets
-Source assets live in `../00-Source/public/`. Website files in `public/` are deployable copies, not the source of truth.
+Keep source images and videos with their projects in Drive. Store the files used by the site in `public/`.
 
 When adding or replacing website imagery:
 
-1. Put the canonical asset in the relevant `../00-Source/public/.../assets/` folder.
+1. Put the original or edited source asset in the relevant project folder in Drive.
 2. Copy only the selected website-ready asset into `public/`.
 3. Run `npm run optimize:images`.
 4. Treat `public/optimized/` as generated output.
@@ -80,7 +80,7 @@ When adding or replacing website imagery:
 Edit `lib/site-content.ts` to update contact information.
 
 ### Update Content
-For positioning or tone changes, update `../00-Source/public/narrative.md` first. Then sync `lib/site-content.ts` for homepage, metadata, and contact copy. Components should stay mostly presentational.
+For positioning or tone changes, update the positioning note in Vision first. Then update `lib/site-content.ts` for homepage, metadata, and contact copy. Components should stay mostly presentational.
 
 ## Deployment
 

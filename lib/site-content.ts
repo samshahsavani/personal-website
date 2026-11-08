@@ -1,5 +1,5 @@
-// Website adapter for 00-Source/public/narrative.md and public source modules.
-// Update narrative.md for positioning changes, source modules for factual changes, then sync this file.
+// Website adapter for 00-Source/public/positioning.md and public source modules.
+// Update positioning.md for positioning changes, source modules for factual changes, then sync this file.
 
 export const siteMetadata = {
   title: 'Sam Shahsavani',
