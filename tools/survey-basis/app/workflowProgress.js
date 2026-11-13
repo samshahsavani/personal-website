@@ -2,7 +2,6 @@ const STEP_STATUS = Object.freeze({
   open: 'open',
   boundary: 'boundary',
   scale: 'scale',
-  trueNorth: 'trueNorth',
   align: 'align',
   layers: 'layers',
 });
@@ -12,9 +11,6 @@ export function renderWorkflowProgress(state) {
     [STEP_STATUS.open]: state.underlay ? done('Loaded') : pending('Pending'),
     [STEP_STATUS.boundary]: boundaryStatus(state),
     [STEP_STATUS.scale]: scaleStatus(state),
-    [STEP_STATUS.trueNorth]: state.trueNorthA && state.trueNorthB
-      ? done('Picked')
-      : state.pickMode === 'trueNorth' || state.trueNorthA ? active('Picking') : optional('Optional'),
     [STEP_STATUS.align]: state.underlay?.prep?.alignmentPivot
       ? done('Aligned')
       : state.pickMode === 'align' || state.selectedAlignLine ? active('Picking') : pending('Pending'),

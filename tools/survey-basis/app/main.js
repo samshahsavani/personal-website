@@ -12,8 +12,6 @@ import { alignmentFaceGuide, directionLabel, exteriorFaceAlignment } from './ali
 import { inferLeftRightSideSegments } from './boundarySideInference.js';
 import { renderRevitPreflight, surveyExportBlocker, surveyHealthText } from './exportReadiness.js';
 import { renderSurveyPreview, updateSurveyLayerVisibility } from './surveyPreviewRenderer.js';
-import { trueNorthLabel } from './trueNorth.js';
-import { renderTrueNorthArrow } from './trueNorthOverlay.js';
 import { renderWorkflowProgress } from './workflowProgress.js';
 import {
   boundaryFromManualSideSegments,
@@ -37,8 +35,6 @@ const state = {
   pickMode: 'idle',
   pointA: null,
   pointB: null,
-  trueNorthA: null,
-  trueNorthB: null,
   alignA: null,
   alignB: null,
   boundary: null,
@@ -74,9 +70,6 @@ const refs = {
   trueDistance: document.getElementById('true-distance'),
   trueUnit: document.getElementById('true-distance-unit'),
   modeCalibrate: document.getElementById('btn-mode-calibrate'),
-  modeTrueNorth: document.getElementById('btn-mode-true-north'),
-  clearTrueNorth: document.getElementById('btn-clear-true-north'),
-  trueNorthStatus: document.getElementById('true-north-status'),
   modeAlign: document.getElementById('btn-mode-align'),
   modeFront: document.getElementById('btn-mode-front'),
   modeRear: document.getElementById('btn-mode-rear'),
@@ -110,8 +103,6 @@ refs.showLayers.addEventListener('click', () => setAllLayersVisible(true));
 refs.hideLayers.addEventListener('click', () => setAllLayersVisible(false));
 refs.toggleContextTone.addEventListener('click', toggleContextTone);
 refs.modeCalibrate.addEventListener('click', () => togglePickMode('calibrate'));
-refs.modeTrueNorth.addEventListener('click', () => togglePickMode('trueNorth'));
-refs.clearTrueNorth.addEventListener('click', clearTrueNorth);
 refs.modeAlign.addEventListener('click', () => togglePickMode('align'));
 refs.modeFront.addEventListener('click', () => togglePickMode('front'));
 refs.modeRear.addEventListener('click', () => togglePickMode('rear'));
@@ -160,8 +151,6 @@ function importDxfFile(event) {
       state.layerColors = colorByLayer(displayEntities, underlay.layerTable);
       state.visibleLayers = new Set([...state.layerColors.keys()]);
       resetBoundarySelections({ clearLayer: true, clearBoundary: true });
-      state.trueNorthA = null;
-      state.trueNorthB = null;
       state.alignA = null;
       state.alignB = null;
       state.selectedAlignLine = null;
@@ -292,10 +281,6 @@ function onCanvasClick(event) {
     return;
   }
   const point = svgPointFromEvent(event);
-  if (state.pickMode === 'trueNorth') {
-    pickTrueNorthPoint(point);
-    return;
-  }
   if (state.pickMode === 'align') {
     pickAlignmentVector(point);
     return;
@@ -456,16 +441,6 @@ function renderPicks() {
   renderSelectedLeftVectors();
   renderSelectedRightVectors();
   renderPointSet([state.pointA, state.pointB].filter(Boolean), 'survey-pick-point');
-  renderPointSet([state.trueNorthA, state.trueNorthB].filter(Boolean), 'survey-true-north-point');
-  if (state.trueNorthA && state.trueNorthB) {
-    renderTrueNorthArrow({
-      layer: state.pickLayer,
-      start: state.trueNorthA,
-      end: state.trueNorthB,
-      markerSize,
-      svgElement,
-    });
-  }
   renderPointSet([state.alignA, state.alignB].filter(Boolean), 'survey-align-point');
   if (state.pointA && state.pointB) {
     renderOverlayLine(state.pointA, state.pointB, 'survey-pick-line');
@@ -522,7 +497,7 @@ function renderPointSet(points, className) {
     const circle = svgElement('circle');
     circle.setAttribute('cx', point[0]);
     circle.setAttribute('cy', point[1]);
-    circle.setAttribute('r', ['survey-pick-point', 'survey-true-north-point'].includes(className) ? markerSize(5.2) : markerSize(3.5));
+    circle.setAttribute('r', className === 'survey-pick-point' ? markerSize(5.2) : markerSize(3.5));
     circle.setAttribute('class', className);
     state.pickLayer.appendChild(circle);
   });
@@ -560,9 +535,6 @@ function resetPicks() {
   if (state.pickMode === 'align') {
     state.alignA = null;
     state.alignB = null;
-  } else if (state.pickMode === 'trueNorth') {
-    state.trueNorthA = null;
-    state.trueNorthB = null;
   } else {
     state.pointA = null;
     state.pointB = null;
@@ -600,8 +572,8 @@ function renderToneToggle() {
 
 function setPickMode(mode) {
   state.pickMode = mode;
-  [refs.modeCalibrate, refs.modeTrueNorth, refs.modeAlign, refs.modeFront, refs.modeRear, refs.modeSide1, refs.modeSide2].forEach((button) => button.classList.remove('active'));
-  const activeButton = { calibrate: refs.modeCalibrate, trueNorth: refs.modeTrueNorth, align: refs.modeAlign, front: refs.modeFront, rear: refs.modeRear, side1: refs.modeSide1, side2: refs.modeSide2 }[mode];
+  [refs.modeCalibrate, refs.modeAlign, refs.modeFront, refs.modeRear, refs.modeSide1, refs.modeSide2].forEach((button) => button.classList.remove('active'));
+  const activeButton = { calibrate: refs.modeCalibrate, align: refs.modeAlign, front: refs.modeFront, rear: refs.modeRear, side1: refs.modeSide1, side2: refs.modeSide2 }[mode];
   activeButton?.classList.add('active');
   refs.canvasModeHint.textContent = modeInstruction();
   setStatus(modeInstruction());
@@ -614,7 +586,6 @@ function togglePickMode(mode) {
 
 function modeInstruction() {
   if (!state.underlay) return 'Waiting for DXF.';
-  if (state.pickMode === 'trueNorth') return 'True North mode: pick the tail and arrow tip of the survey north symbol.';
   if (state.pickMode === 'align') return 'Alignment mode: build the boundary, click a property side, then point its outside face to a compass direction.';
   if (state.pickMode === 'front') return 'Front mode: click every property segment that belongs to the front side.';
   if (state.pickMode === 'rear') return 'Rear mode: click every property segment that belongs to the rear side.';
@@ -622,32 +593,6 @@ function modeInstruction() {
   if (state.pickMode === 'side2') return 'Side 2 mode: click every segment that belongs to the second side run.';
   if (state.pickMode === 'calibrate') return 'Scale mode: pick point A, then point B.';
   return 'Choose a step on the left. Drag pans the drawing; wheel zooms.';
-}
-
-function pickTrueNorthPoint(point) {
-  const snap = nearestSnapCandidate(point, null);
-  if (!snap) {
-    refs.trueNorthStatus.textContent = 'Move closer to any CAD endpoint/intersection on the north arrow or compass symbol.';
-    return;
-  }
-  if (!state.trueNorthA || (state.trueNorthA && state.trueNorthB)) {
-    state.trueNorthA = snap.point;
-    state.trueNorthB = null;
-    refs.trueNorthStatus.textContent = `True north tail snapped to ${snap.kind}. Pick the arrow tip next.`;
-  } else {
-    state.trueNorthB = snap.point;
-    refs.trueNorthStatus.textContent = trueNorthLabel(state.trueNorthA, state.trueNorthB);
-  }
-  renderWorkflowProgress(state);
-  renderPicks();
-}
-
-function clearTrueNorth() {
-  state.trueNorthA = null;
-  state.trueNorthB = null;
-  refs.trueNorthStatus.textContent = 'No true north vector picked.';
-  renderWorkflowProgress(state);
-  renderPicks();
 }
 
 function pickAlignmentVector(point) {
@@ -743,8 +688,6 @@ function applyAlignment() {
   state.rightLineKeys = nextRightLineKeys;
   state.pointA = rotateOptionalPoint(state.pointA, pivot, angle);
   state.pointB = rotateOptionalPoint(state.pointB, pivot, angle);
-  state.trueNorthA = rotateOptionalPoint(state.trueNorthA, pivot, angle);
-  state.trueNorthB = rotateOptionalPoint(state.trueNorthB, pivot, angle);
   state.selectedAlignLine = nextSelectedAlignLine;
   state.alignA = nextSelectedAlignLine.start;
   state.alignB = nextSelectedAlignLine.end;
@@ -948,7 +891,6 @@ function renderSetupStatuses() {
   refs.alignmentStatus.textContent = state.underlay
     ? `Rotation: ${round2(state.underlay.prep?.alignmentRotation || 0)}°.`
     : 'No alignment vector picked.';
-  refs.trueNorthStatus.textContent = trueNorthLabel(state.trueNorthA, state.trueNorthB);
   const frontText = state.frontLineKeys.size ? ` Front: ${state.frontLineKeys.size} selected vector${state.frontLineKeys.size === 1 ? '' : 's'}.` : '';
   const rearText = state.rearLineKeys.size ? ` Rear: ${state.rearLineKeys.size} selected vector${state.rearLineKeys.size === 1 ? '' : 's'}.` : '';
   const side1Text = state.side1LineKeys.size ? ` Side 1: ${state.side1LineKeys.size} selected vector${state.side1LineKeys.size === 1 ? '' : 's'}.` : '';
@@ -988,9 +930,9 @@ function renderBoundaryOverlay() {
 
 function updateHover(point) {
   if (!state.underlay) return;
-  const layerFilter = state.pickMode === 'trueNorth' ? null : activeBoundaryLayer();
+  const layerFilter = activeBoundaryLayer();
   const vectorMode = ['align', 'front', 'rear', 'side1', 'side2'].includes(state.pickMode);
-  const snapMode = ['calibrate', 'trueNorth'].includes(state.pickMode);
+  const snapMode = state.pickMode === 'calibrate';
   const hoverLine = vectorMode ? nearestLineCandidate(point, layerFilter) : null;
   const hoverSnap = snapMode ? nearestSnapCandidate(point, layerFilter) : null;
   const signature = hoverLine

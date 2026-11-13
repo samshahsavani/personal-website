@@ -194,41 +194,6 @@ p { color:var(--muted); line-height:1.6; }
   vector-effect: non-scaling-stroke;
 }
 
-.survey-true-north-point {
-  fill: #0891b2;
-  stroke: #fffefa;
-  stroke-width: 1.4;
-  vector-effect: non-scaling-stroke;
-}
-
-.survey-true-north-line {
-  stroke: #0891b2;
-  stroke-width: 2.3;
-  stroke-linecap: round;
-  vector-effect: non-scaling-stroke;
-}
-
-.survey-true-north-head {
-  stroke: #0891b2;
-  stroke-width: 2.3;
-  stroke-linecap: round;
-  vector-effect: non-scaling-stroke;
-}
-
-.survey-true-north-label {
-  fill: #0f766e;
-  stroke: white;
-  stroke-width: 3;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  paint-order: stroke;
-  text-anchor: middle;
-  dominant-baseline: middle;
-  vector-effect: non-scaling-stroke;
-}
-
 .survey-align-line {
   stroke: #2563eb;
   stroke-width: 1.5;
