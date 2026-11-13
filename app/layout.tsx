@@ -54,7 +54,7 @@ const structuredData = [
     name: 'Sam Shahsavani',
     url: `${siteMetadata.url}/`,
     jobTitle: 'AEC data workflows and tool-building',
-    description: 'Architecture data workflows and AEC tool-building.',
+    description: siteMetadata.description,
     sameAs: [
       'https://www.linkedin.com/in/sam-shahsavani/',
       'https://github.com/samshahsavani',
@@ -80,7 +80,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -88,7 +88,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body>
+      <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <ThemeProvider>
           <Header />
           {children}

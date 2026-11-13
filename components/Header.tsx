@@ -20,12 +20,6 @@ export default function Header() {
             Projects
           </a>
           <a
-            href="/tools/"
-            className="text-sm text-muted hover:text-black dark:hover:text-white transition-colors duration-300"
-          >
-            Tools
-          </a>
-          <a
             href="/#about"
             className="text-sm text-muted hover:text-black dark:hover:text-white transition-colors duration-300 hidden md:block"
           >

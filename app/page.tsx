@@ -3,7 +3,6 @@ import Proof from '@/components/Proof';
 import Projects from '@/components/Projects';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
-import Tools from '@/components/Tools';
 
 export default function Home() {
   return (
@@ -11,7 +10,6 @@ export default function Home() {
       <Hero />
       <Proof />
       <Projects />
-      <Tools />
       <About />
       <Contact />
       <footer className="py-8 px-6 border-t border-black/[0.04] dark:border-white/[0.04]">
